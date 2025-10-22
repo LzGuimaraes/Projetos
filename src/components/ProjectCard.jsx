@@ -7,10 +7,10 @@ export const ProjectCard = ({ project }) => {
   const statusConfig = {
     'Trabalho Em Andamento': { bg: 'rgba(251, 191, 36, 0.2)', text: 'rgb(217, 119, 6)', border: 'rgba(251, 191, 36, 0.4)' },
     'Concluído': { bg: 'rgba(74, 222, 128, 0.2)', text: 'rgb(22, 163, 74)', border: 'rgba(74, 222, 128, 0.4)' },
-    'Pendente': { bg: 'rgba(248, 113, 113, 0.2)', text: 'rgb(220, 38, 38)', border: 'rgba(248, 113, 113, 0.4)' },
+    'Cancelado': { bg: 'rgba(248, 113, 113, 0.2)', text: 'rgb(220, 38, 38)', border: 'rgba(248, 113, 113, 0.4)' },
     'Aberto': { bg: 'rgba(74, 222, 128, 0.2)', text: 'rgb(22, 163, 74)', border: 'rgba(74, 222, 128, 0.4)' },
     'Paralisado': { bg: 'rgba(148, 163, 184, 0.2)', text: 'rgb(71, 85, 105)', border: 'rgba(148, 163, 184, 0.4)' },
-    'Entrega': { bg: 'rgba(96, 165, 250, 0.2)', text: 'rgb(37, 99, 235)', border: 'rgba(96, 165, 250, 0.4)' },
+    'Pendente': { bg: 'rgba(96, 165, 250, 0.2)', text: 'rgb(37, 99, 235)', border: 'rgba(96, 165, 250, 0.4)' },
   };
 
   const status = statusConfig[project.status || project.fase] || statusConfig['Trabalho Em Andamento'];
