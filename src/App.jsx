@@ -11,6 +11,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchMode, setSearchMode] = useState(false);
+  const [expandedProjectId, setExpandedProjectId] = useState(null);
 
   const fetchAllProjects = async () => {
     try {
@@ -50,6 +51,10 @@ function App() {
     }
   };
 
+  const handleToggleExpand = (projectId) => {
+    setExpandedProjectId(prev => prev === projectId ? null : projectId);
+  };
+
   useEffect(() => {
     fetchAllProjects();
   }, []);
@@ -82,7 +87,12 @@ function App() {
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6 w-full max-w-5xl justify-items-center">
             {projects.map((project) => (
-              <ProjectCard key={project.numeroProjeto} project={project} />
+              <ProjectCard 
+                key={project.numeroProjeto || project.id || Math.random()} 
+                project={project}
+                isExpanded={expandedProjectId === (project.numeroProjeto || project.id)}
+                onToggle={() => handleToggleExpand(project.numeroProjeto || project.id)}
+              />
             ))}
           </div>
         )}
