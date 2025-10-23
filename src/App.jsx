@@ -28,28 +28,27 @@ function App() {
   };
 
   const fetchSearchProjects = async (valor) => {
-  try {
-    setLoading(true);
-    setError(null);
-    const data = await api.searchProjects(valor);
-    setProjects(data);
-    setSearchMode(true);
-  } catch (err) {
-    setError(`Nenhum resultado encontrado para "${valor}".`);
-    setProjects([]);
-  } finally {
-    setLoading(false);
-  }
-};
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await api.searchProjects(valor);
+      setProjects(data);
+      setSearchMode(true);
+    } catch (err) {
+      setError(`Nenhum resultado encontrado para "${valor}".`);
+      setProjects([]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-const handleSearch = (valor) => {
-  if (valor) {
-    fetchSearchProjects(valor);
-  } else {
-    fetchAllProjects();
-  }
-};
-
+  const handleSearch = (valor) => {
+    if (valor) {
+      fetchSearchProjects(valor);
+    } else {
+      fetchAllProjects();
+    }
+  };
 
   useEffect(() => {
     fetchAllProjects();
@@ -81,7 +80,7 @@ const handleSearch = (valor) => {
         ) : projects.length === 0 ? (
           <EmptyState message={searchMode ? 'Projeto não encontrado.' : 'Nenhum projeto encontrado.'} />
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-5 mt-6 w-full max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6 w-full max-w-5xl justify-items-center">
             {projects.map((project) => (
               <ProjectCard key={project.numeroProjeto} project={project} />
             ))}
