@@ -27,28 +27,29 @@ function App() {
     }
   };
 
-  const fetchProjectByNumber = async (numeroProjeto) => {
-    try {
-      setLoading(true);
-      setError(null);
-      const data = await api.getProjectByNumber(numeroProjeto);
-      setProjects([data]);
-      setSearchMode(true);
-    } catch (err) {
-      setError(`Não foi possível encontrar o projeto ${numeroProjeto}.`);
-      setProjects([]);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const fetchSearchProjects = async (valor) => {
+  try {
+    setLoading(true);
+    setError(null);
+    const data = await api.searchProjects(valor);
+    setProjects(data);
+    setSearchMode(true);
+  } catch (err) {
+    setError(`Nenhum resultado encontrado para "${valor}".`);
+    setProjects([]);
+  } finally {
+    setLoading(false);
+  }
+};
 
-  const handleSearch = (numeroProjeto) => {
-    if (numeroProjeto) {
-      fetchProjectByNumber(numeroProjeto);
-    } else {
-      fetchAllProjects();
-    }
-  };
+const handleSearch = (valor) => {
+  if (valor) {
+    fetchSearchProjects(valor);
+  } else {
+    fetchAllProjects();
+  }
+};
+
 
   useEffect(() => {
     fetchAllProjects();
